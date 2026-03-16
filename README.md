@@ -31,8 +31,8 @@ A nostalgic web-based operating system inspired by the **Frutiger Aero** and **W
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/frugiter-os.git
-   cd frugiter-os
+   git clone https://github.com/yourusername/frutiger-os.git
+   cd frutiger-os
    ```
 
 2. Install dependencies:
