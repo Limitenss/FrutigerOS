@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const resumeData = {
-    name: "Wyatt Cabaniss",
-    title: "Fullstack Developer & Aero Specialist",
-    subtitle: "wyattcabaniss.tech",
+const sysData = {
+    name: "Administrator",
+    title: "System Developer & Aero Specialist",
+    subtitle: "explorer.os",
     summary: "A digital craftsman dedicated to resurrecting the 'Frutiger Aero' aesthetic through modern web technologies. Expert in high-fidelity UI modeling and immersive user experiences.",
     experience: [
         { company: "Aero Design Labs", role: "Lead UI Architect", period: "2023 - Present", desc: "Pioneering the modern resurgence of glossy, skeuomorphic web interfaces." },
@@ -51,8 +51,8 @@ function Portfolio({ playSound }) {
 
                 <div className="glossy-header">
                     <div className="glass-reflection"></div>
-                    <h1 style={{ margin: 0, fontSize: 24, fontWeight: 300, textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{resumeData.name}</h1>
-                    <p style={{ margin: '2px 0 0 0', opacity: 0.9, fontSize: 13 }}>{resumeData.title}</p>
+                    <h1 style={{ margin: 0, fontSize: 24, fontWeight: 300, textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{sysData.name}</h1>
+                    <p style={{ margin: '2px 0 0 0', opacity: 0.9, fontSize: 13 }}>{sysData.title}</p>
                 </div>
 
                 {/* Windows edition */}
@@ -63,7 +63,7 @@ function Portfolio({ playSound }) {
                     </div>
                     <div className="sys-row">
                         <div className="sys-label">Copyright:</div>
-                        <div className="sys-value">© 2026 {resumeData.name}. All rights reserved.</div>
+                        <div className="sys-value">© 2026 {sysData.name}. All rights reserved.</div>
                     </div>
                 </div>
 
@@ -72,12 +72,12 @@ function Portfolio({ playSound }) {
                     <div className="sys-section-title">System Properties</div>
                     <div className="sys-row" style={{ marginBottom: 15 }}>
                         <div className="sys-label">Summary:</div>
-                        <div className="sys-value" style={{ lineHeight: 1.5 }}>{resumeData.summary}</div>
+                        <div className="sys-value" style={{ lineHeight: 1.5 }}>{sysData.summary}</div>
                     </div>
                     <div className="sys-row">
                         <div className="sys-label">Skills:</div>
                         <div className="sys-value">
-                            {resumeData.skills.join(' • ')}
+                            {sysData.skills.join(' • ')}
                         </div>
                     </div>
                     <div className="sys-row">
@@ -91,12 +91,12 @@ function Portfolio({ playSound }) {
                     <div className="sys-section-title">Contact & Projects</div>
                     <div className="sys-row">
                         <div className="sys-label">Website:</div>
-                        <div className="sys-value" style={{ color: '#0066cc', cursor: 'pointer', textDecoration: 'underline' }}>{resumeData.subtitle}</div>
+                        <div className="sys-value" style={{ color: '#0066cc', cursor: 'pointer', textDecoration: 'underline' }}>{sysData.subtitle}</div>
                     </div>
                     <div className="sys-row">
                         <div className="sys-label">Featured Projects:</div>
                         <div className="sys-value">
-                            {resumeData.projects.map((proj, idx) => (
+                            {sysData.projects.map((proj, idx) => (
                                 <div key={idx} style={{ marginBottom: 6 }}>
                                     <span style={{ fontWeight: 'bold' }}>{proj.name}</span>: {proj.desc}
                                 </div>
@@ -109,7 +109,7 @@ function Portfolio({ playSound }) {
                     <div className="sys-section-title">Support</div>
                     <div className="sys-row" style={{ marginBottom: 0 }}>
                         <div className="sys-label">Support Status:</div>
-                        <div className="sys-value">24/7 Digital Craftsmanship • {resumeData.name}</div>
+                        <div className="sys-value">24/7 Digital Craftsmanship • {sysData.name}</div>
                     </div>
                 </div>
             </div>
