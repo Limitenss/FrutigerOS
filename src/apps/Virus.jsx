@@ -28,7 +28,7 @@ function Virus({ onTrigger }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                 <img src="/assets/icons/security.png" alt="" style={{ width: 48, height: 48 }} />
                 <div>
-                    <h3 style={{ margin: 0, fontSize: '14px', color: '#003399' }}>Windows Security Update</h3>
+                    <h3 style={{ margin: 0, fontSize: '14px', color: '#003399' }}>FrutigerOS Security Update</h3>
                     <p style={{ margin: 0, fontSize: '12px', color: '#666' }}>Version 7.1.7601 (Service Pack 1)</p>
                 </div>
             </div>
