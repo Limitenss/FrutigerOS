@@ -851,6 +851,31 @@ body.dragging-active {
     transition: width 0.3s ease;
 }
 
+/* BSOD Styles */
+.bsod-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0000aa;
+    color: white;
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size: 14px;
+    padding: 40px;
+    z-index: 99999;
+    cursor: none;
+}
+
+.bsod-content {
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.bsod-content p {
+    margin-bottom: 1.5em;
+}
+
 .start-menu-item span {
   font-size: 12px;
   color: #333;
