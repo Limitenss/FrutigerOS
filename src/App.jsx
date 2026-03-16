@@ -127,7 +127,7 @@ function App() {
     const audio = new Audio(url);
     const multiplier = type === 'bubble' ? 0.4 : 1.0;
     audio.volume = osVolume * multiplier;
-    audio.play().catch(e => console.log('Audio play blocked:', e));
+    audio.play().catch(e => console.warn('Audio play blocked:', e));
   }, [osVolume, soundScheme]);
 
   const handleLoginStart = () => {

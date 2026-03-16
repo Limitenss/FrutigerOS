@@ -7,7 +7,7 @@ const sysData = {
     summary: "A digital craftsman dedicated to resurrecting the 'Frutiger Aero' aesthetic through modern web technologies. Expert in high-fidelity UI modeling and immersive user experiences.",
     experience: [
         { company: "Aero Design Labs", role: "Lead UI Architect", period: "2023 - Present", desc: "Pioneering the modern resurgence of glossy, skeuomorphic web interfaces." },
-        { company: "Hackclub Community", role: "WebOS Developer", period: "2022 - 2023", desc: "Collaborated on open-source web-based operating systems and simulation tools." }
+        { company: "Open Source Community", role: "WebOS Contributor", period: "2022 - 2023", desc: "Collaborated on architectural design for web-based operating systems and UI frameworks." }
     ],
     projects: [
         { name: "Frutiger OS", desc: "The ultimate Windows 7 / Vista tribute OS built with Vanilla JS and CSS.", link: "#" },

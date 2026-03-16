@@ -8,7 +8,6 @@ function StartMenu({ APP_CONFIG, launchApp, playSound, handleShutdown }) {
         config.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    console.log('Start Search:', searchTerm, 'Filtered Count:', filteredApps.length);
 
     return (
         <div id="start-menu" className="win7-glass">
