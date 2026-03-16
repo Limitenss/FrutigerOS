@@ -39,7 +39,8 @@ const APP_CONFIG = {
   personalization: { name: 'Personalization', icon: '/assets/icons/212.png' },
   documents: { name: 'Documents', icon: '/assets/icons/explorer.ico' },
   pictures: { name: 'Pictures', icon: '/assets/icons/explorer.ico' },
-  computer: { name: 'Computer', icon: '/assets/icons/explorer.ico' }
+  computer: { name: 'Computer', icon: '/assets/icons/explorer.ico' },
+  virus: { name: 'Security_Update.exe', icon: '/assets/icons/security.png' }
 };
 
 import Taskbar from './components/Taskbar';
@@ -54,6 +55,7 @@ import Pizzatron from './apps/Pizzatron';
 import Personalization from './apps/Personalization';
 import Minesweeper from './apps/Minesweeper';
 import Photos from './apps/Photos';
+import Virus from './apps/Virus';
 
 function App() {
   const [stage, setStage] = useState('login'); // 'login' | 'authenticating' | 'password' | 'desktop'
@@ -72,6 +74,8 @@ function App() {
   const [transparency, setTransparency] = useState(true);
   const [soundScheme, setSoundScheme] = useState('windows-default');
   const [isPeeking, setIsPeeking] = useState(false);
+  const [isPrankMode, setIsPrankMode] = useState(false);
+  const [errorWindows, setErrorWindows] = useState([]); // Array of { id, x, y }
 
   useEffect(() => {
     // Load from cookies
@@ -273,6 +277,27 @@ function App() {
     }, 2000);
   }, [playSound]);
 
+  const triggerPrank = useCallback(() => {
+    setIsPrankMode(true);
+    playSound('error');
+    
+    // Spawn error windows over time
+    for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+            const id = `error-${Date.now()}-${i}`;
+            const x = Math.random() * (window.innerWidth - 300);
+            const y = Math.random() * (window.innerHeight - 200);
+            setErrorWindows(prev => [...prev, { id, x, y }]);
+            playSound('error');
+        }, i * 400);
+    }
+  }, [playSound]);
+
+  const closeError = (id) => {
+    setErrorWindows(prev => prev.filter(win => win.id !== id));
+    playSound('click');
+  };
+
   const renderAppContent = (appId) => {
     switch (appId) {
       case 'notepad': return <Notepad />;
@@ -293,12 +318,13 @@ function App() {
       />;
       case 'minesweeper': return <Minesweeper />;
       case 'photos': return <Photos />;
+      case 'virus': return <Virus onTrigger={triggerPrank} />;
       default: return <div style={{ padding: 20 }}>This feature is currently unavailable.</div>;
     }
   };
 
   return (
-    <div className={`os-root theme-${windowColor} ${transparency ? 'transparency-on' : 'transparency-off'} ${isPeeking ? 'peeking-active' : ''}`}>
+    <div className={`os-root theme-${windowColor} ${transparency ? 'transparency-on' : 'transparency-off'} ${isPeeking ? 'peeking-active' : ''} ${isPrankMode ? 'prank-glitch' : ''}`}>
       <div className="global-vignette"></div>
       <div
         id="desktop-wallpaper"
@@ -403,6 +429,37 @@ function App() {
               >
                 {renderAppContent(appId)}
               </WindowWrapper>
+            ))}
+
+            {errorWindows.map(err => (
+              <div 
+                key={err.id} 
+                className="win7-error-dialog win7-glass"
+                style={{ 
+                    position: 'absolute', 
+                    left: err.x, 
+                    top: err.y, 
+                    zIndex: 9999,
+                    width: 350
+                }}
+              >
+                <div className="error-header">
+                    <span className="error-title">System Error</span>
+                    <button className="error-close" onClick={() => closeError(err.id)}>✕</button>
+                </div>
+                <div className="error-body">
+                    <div className="error-icon-red">X</div>
+                    <div className="error-message">
+                        A critical system error occurred. Memory at segment 0x004F2A could not be read.
+                        <br/><br/>
+                        The system will now attempt to fix the error.
+                    </div>
+                </div>
+                <div className="error-footer">
+                    <button className="win7-btn-std" onClick={() => closeError(err.id)}>OK</button>
+                    <button className="win7-btn-std" onClick={() => closeError(err.id)}>Details</button>
+                </div>
+              </div>
             ))}
           </div>
 
