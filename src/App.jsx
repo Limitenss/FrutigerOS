@@ -418,7 +418,7 @@ function App() {
       {stage === 'bsod' && (
         <div className="bsod-container">
           <div className="bsod-content">
-            <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+            <p>A problem has been detected and FrutigerOS has been shut down to prevent damage to your computer.</p>
             <p>CRITICAL_PROCESS_DIED</p>
             <p>If this is the first time you've seen this error screen, restart your computer. If this screen appears again, follow these steps:</p>
             <p>Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your hardware or software manufacturer for any Windows updates you might need.</p>
