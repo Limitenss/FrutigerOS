@@ -45,7 +45,7 @@ function Virus({ onTrigger }) {
 
             <div style={{ flex: 1, border: '1px solid #ccc', background: 'white', padding: '10px', fontSize: '11px', overflowY: 'auto', color: '#444' }}>
                 <p>Initializing security module...</p>
-                <p>Scanning system files (C:\Windows\System32)...</p>
+                <p>Scanning system files (C:\FrutigerOS\System32)...</p>
                 {progress > 20 && <p>Checking registry integrity...</p>}
                 {progress > 50 && <p>Verifying digital signatures...</p>}
                 {progress > 80 && <p>Ready to apply patches.</p>}
