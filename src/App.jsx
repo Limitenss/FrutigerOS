@@ -366,7 +366,7 @@ function App() {
                 <div className="user-avatar-frame">
                   <div className="user-avatar-large">
                     <div className="avatar-icon">
-                      <img src="/assets/images/user.png" alt="Admin" />
+                      <img src="/assets/images/user.webp" alt="Admin" />
                     </div>
                   </div>
                 </div>
