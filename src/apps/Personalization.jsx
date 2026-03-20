@@ -5,7 +5,7 @@ const WALLPAPERS = [
     { name: 'Aurora', url: '/assets/images/fa_bg_aurora.webp' },
     { name: 'Glass Peaks', url: '/assets/images/fa_bg_glass_peaks.webp' },
     { name: 'Oceanic', url: '/assets/images/fa_bg_oceanic.webp' },
-    { name: 'Daniele', url: '/assets/images/alaa_1.webp' },
+    { name: 'Daniele', url: '/assets/images/alaa_1.jpg' },
     { name: 'Everett', url: '/assets/images/everett.webp' },
     { name: 'Alaa', url: '/assets/images/daniele_8.webp' },
 ];

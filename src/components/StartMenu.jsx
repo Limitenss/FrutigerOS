@@ -53,7 +53,7 @@ function StartMenu({ APP_CONFIG, launchApp, playSound, handleShutdown }) {
                 <div className="start-menu-right">
                     <div className="user-profile">
                         <div className="user-avatar">
-                            <img src="/assets/images/user.png" alt="Admin" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/assets/images/user.webp" alt="Admin" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
                         <span>Admin</span>
                     </div>
