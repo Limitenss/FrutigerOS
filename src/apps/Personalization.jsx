@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 const WALLPAPERS = [
-    { name: 'Aero Default', url: '/assets/images/win7_login_bg.png' },
-    { name: 'Aurora', url: '/assets/images/fa_bg_aurora.png' },
-    { name: 'Glass Peaks', url: '/assets/images/fa_bg_glass_peaks.png' },
-    { name: 'Oceanic', url: '/assets/images/fa_bg_oceanic.png' },
-    { name: 'Daniele', url: '/assets/images/alaa_1.jpg' },
-    { name: 'Everett', url: '/assets/images/everett.jpg' },
-    { name: 'Alaa', url: '/assets/images/daniele_8.jpg' },
+    { name: 'Aero Default', url: '/assets/images/win7_login_bg.webp' },
+    { name: 'Aurora', url: '/assets/images/fa_bg_aurora.webp' },
+    { name: 'Glass Peaks', url: '/assets/images/fa_bg_glass_peaks.webp' },
+    { name: 'Oceanic', url: '/assets/images/fa_bg_oceanic.webp' },
+    { name: 'Daniele', url: '/assets/images/alaa_1.webp' },
+    { name: 'Everett', url: '/assets/images/everett.webp' },
+    { name: 'Alaa', url: '/assets/images/daniele_8.webp' },
 ];
 
 const WINDOW_COLORS = [
@@ -24,19 +24,19 @@ function Personalization({ currentWallpaper, setWallpaper, currentColor, setWind
     return (
         <div className="personalization-container sys-info-container">
             <div className="personalization-sidebar sys-sidebar" style={{ width: 180 }}>
-                <div 
+                <div
                     className={`sys-sidebar-item ${activeTab === 'wallpaper' ? 'active' : ''}`}
                     onClick={() => setActiveTab('wallpaper')}
                 >
                     Desktop Background
                 </div>
-                <div 
+                <div
                     className={`sys-sidebar-item ${activeTab === 'color' ? 'active' : ''}`}
                     onClick={() => setActiveTab('color')}
                 >
                     Window Color
                 </div>
-                <div 
+                <div
                     className={`sys-sidebar-item ${activeTab === 'sounds' ? 'active' : ''}`}
                     onClick={() => setActiveTab('sounds')}
                 >
@@ -51,8 +51,8 @@ function Personalization({ currentWallpaper, setWallpaper, currentColor, setWind
                         <h3>Select a Background</h3>
                         <div className="grid-list">
                             {WALLPAPERS.map(wp => (
-                                <div 
-                                    key={wp.url} 
+                                <div
+                                    key={wp.url}
                                     className={`wallpaper-item ${currentWallpaper === wp.url ? 'active' : ''}`}
                                     onClick={() => setWallpaper(wp.url)}
                                 >
@@ -70,8 +70,8 @@ function Personalization({ currentWallpaper, setWallpaper, currentColor, setWind
                         <p>Change the color of your window borders, Start menu, and taskbar.</p>
                         <div className="color-list">
                             {WINDOW_COLORS.map(color => (
-                                <div 
-                                    key={color.id} 
+                                <div
+                                    key={color.id}
                                     className={`color-swatch ${currentColor === color.id ? 'active' : ''}`}
                                     onClick={() => setWindowColor(color.id)}
                                     title={color.name}
@@ -80,13 +80,13 @@ function Personalization({ currentWallpaper, setWallpaper, currentColor, setWind
                                 </div>
                             ))}
                         </div>
-                        
+
                         <div className="transparency-setting">
                             <label className="checkbox-container">
-                                <input 
-                                    type="checkbox" 
-                                    checked={transparency} 
-                                    onChange={(e) => setTransparency(e.target.checked)} 
+                                <input
+                                    type="checkbox"
+                                    checked={transparency}
+                                    onChange={(e) => setTransparency(e.target.checked)}
                                 />
                                 <span className="checkmark"></span>
                                 Enable transparency
@@ -98,16 +98,16 @@ function Personalization({ currentWallpaper, setWallpaper, currentColor, setWind
                     <div className="sound-settings">
                         <h3>Sound Schemes</h3>
                         <p>A sound scheme is a set of sounds applied to events in Windows and programs.</p>
-                        
+
                         <div className="scheme-selector" style={{ marginTop: 20 }}>
-                            <div 
+                            <div
                                 className={`scheme-option ${currentSoundScheme === 'windows-default' ? 'active' : ''}`}
                                 onClick={() => setSoundScheme('windows-default')}
                             >
                                 <span className="scheme-name">Windows Default</span>
                                 <span className="scheme-desc">Standard Aero sound scheme</span>
                             </div>
-                            <div 
+                            <div
                                 className={`scheme-option ${currentSoundScheme === 'nature' ? 'active' : ''}`}
                                 onClick={() => setSoundScheme('nature')}
                             >

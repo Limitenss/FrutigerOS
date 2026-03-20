@@ -52,13 +52,12 @@ A nostalgic web-based operating system inspired by the **Frutiger Aero** and **W
 - **CSS3** - Custom glassy textures and animations
 - **HTML5 Audio** - Authentic system soundscapes
 
-## 🎨 Aesthetics
-
-This project follows the **Frutiger Aero** design movement (c. 2004–2013), focusing on:
-- Glossy "glass" surfaces
-- Skeuomorphism
-- Nature-tech fusion (water, grass, bubbles)
-- Optimistic futurism
+### Optimization Summary
+1. **Lazy Loading** - Reduces initial JavaScript download.
+2. **Asset Management** - Shrinks images and onboarded sounds.
+3. **CSS Refactoring** - Modularizes code and improves rendering speed.
+4. **Component Architecture** - Organizes code for better maintenance.
+5. **Memoization** - Prevents unnecessary renders.
 
 ## 📄 License
 

@@ -1,28 +1,28 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
 import './index.css';
 
 const SOUNDS = {
   'windows-default': {
-    click: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Windows%20Navigation%20Start.wav',
-    startup: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Windows%20Startup.wav',
-    logon: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Windows%20Logon%20Sound.wav',
-    shutdown: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Windows%20Shutdown.wav',
-    error: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Windows%20Error.wav',
-    open: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2006)%20Windows%20Vista/Glass/Windows%20Minimize.wav',
-    close: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2006)%20Windows%20Vista/Glass/Windows%20Restore.wav',
-    bubble: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2006)%20Windows%20Vista/Glass/Windows%20Feed%20Discovered.wav',
-    glass: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2006)%20Windows%20Vista/Glass/Windows%20Ding.wav'
+    click: '/assets/sounds/click.wav',
+    startup: '/assets/sounds/startup.wav',
+    logon: '/assets/sounds/logon.wav',
+    shutdown: '/assets/sounds/shutdown.wav',
+    error: '/assets/sounds/error.wav',
+    open: '/assets/sounds/open.wav',
+    close: '/assets/sounds/close.wav',
+    bubble: '/assets/sounds/bubble.wav',
+    glass: '/assets/sounds/glass.wav'
   },
   'nature': {
-    click: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Navigation%20Start.wav',
-    startup: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Windows%20Startup.wav',
-    logon: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Logon%20Sound.wav',
-    shutdown: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Shutdown.wav',
-    error: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Error.wav',
-    open: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Minimize.wav',
-    close: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Restore.wav',
-    bubble: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Information%20Bar.wav',
-    glass: 'https://raw.githubusercontent.com/MCPlayer2015/all-windows-sounds/main/(2009)%20Windows%207/Nature/Windows%20Ding.wav'
+    click: '/assets/sounds/nature-click.wav',
+    startup: '/assets/sounds/startup.wav',
+    logon: '/assets/sounds/nature-logon.wav',
+    shutdown: '/assets/sounds/nature-shutdown.wav',
+    error: '/assets/sounds/nature-error.wav',
+    open: '/assets/sounds/nature-open.wav',
+    close: '/assets/sounds/nature-close.wav',
+    bubble: '/assets/sounds/nature-bubble.wav',
+    glass: '/assets/sounds/nature-glass.wav'
   }
 };
 
@@ -46,16 +46,16 @@ const APP_CONFIG = {
 import Taskbar from './components/Taskbar';
 import StartMenu from './components/StartMenu';
 import WindowWrapper from './components/WindowWrapper';
-import Notepad from './apps/Notepad';
-import Calculator from './apps/Calculator';
-import Portfolio from './apps/Portfolio';
-import Browser from './apps/Browser';
-import MediaPlayer from './apps/MediaPlayer';
-import Pizzatron from './apps/Pizzatron';
-import Personalization from './apps/Personalization';
-import Minesweeper from './apps/Minesweeper';
-import Photos from './apps/Photos';
-import Virus from './apps/Virus';
+const Notepad = lazy(() => import('./apps/Notepad'));
+const Calculator = lazy(() => import('./apps/Calculator'));
+const Portfolio = lazy(() => import('./apps/Portfolio'));
+const Browser = lazy(() => import('./apps/Browser'));
+const MediaPlayer = lazy(() => import('./apps/MediaPlayer'));
+const Pizzatron = lazy(() => import('./apps/Pizzatron'));
+const Personalization = lazy(() => import('./apps/Personalization'));
+const Minesweeper = lazy(() => import('./apps/Minesweeper'));
+const Photos = lazy(() => import('./apps/Photos'));
+const Virus = lazy(() => import('./apps/Virus'));
 
 function App() {
   const [stage, setStage] = useState('login'); // 'login' | 'authenticating' | 'password' | 'desktop'
@@ -69,7 +69,7 @@ function App() {
   const [shutdownStage, setShutdownStage] = useState(null); // null | 'fading' | 'monitor' | 'booting'
 
   // Personalization States
-  const [wallpaper, setWallpaper] = useState('/assets/images/win7_login_bg.png');
+  const [wallpaper, setWallpaper] = useState('/assets/images/win7_login_bg.webp');
   const [windowColor, setWindowColor] = useState('sky'); // sky, frost, graphite, etc.
   const [transparency, setTransparency] = useState(true);
   const [soundScheme, setSoundScheme] = useState('windows-default');
@@ -280,34 +280,34 @@ function App() {
   const triggerPrank = useCallback(() => {
     setIsPrankMode(true);
     playSound('error');
-    
+
     // Spawn error windows over time
     for (let i = 0; i < 8; i++) {
-        setTimeout(() => {
-            const id = `error-${Date.now()}-${i}`;
-            const x = Math.random() * (window.innerWidth - 300);
-            const y = Math.random() * (window.innerHeight - 200);
-            setErrorWindows(prev => [...prev, { id, x, y }]);
-            playSound('error');
-        }, i * 400);
+      setTimeout(() => {
+        const id = `error-${Date.now()}-${i}`;
+        const x = Math.random() * (window.innerWidth - 300);
+        const y = Math.random() * (window.innerHeight - 200);
+        setErrorWindows(prev => [...prev, { id, x, y }]);
+        playSound('error');
+      }, i * 400);
     }
 
     // Trigger BSOD after errors finish
     setTimeout(() => {
-        setStage('bsod');
-        setErrorWindows([]);
-        setIsPrankMode(false);
-        
-        // Auto-reboot after BSOD
+      setStage('bsod');
+      setErrorWindows([]);
+      setIsPrankMode(false);
+
+      // Auto-reboot after BSOD
+      setTimeout(() => {
+        setShutdownStage('monitor');
+        setStage('login'); // Reset stage for when it comes back
+
+        // Start boot sequence automatically
         setTimeout(() => {
-            setShutdownStage('monitor');
-            setStage('login'); // Reset stage for when it comes back
-            
-            // Start boot sequence automatically
-            setTimeout(() => {
-                handlePowerOn();
-            }, 1000);
-        }, 4000);
+          handlePowerOn();
+        }, 1000);
+      }, 4000);
     }, 8 * 400 + 3000);
   }, [playSound, handlePowerOn]);
 
@@ -317,28 +317,34 @@ function App() {
   };
 
   const renderAppContent = (appId) => {
-    switch (appId) {
-      case 'notepad': return <Notepad />;
-      case 'calculator': return <Calculator playSound={playSound} />;
-      case 'portfolio': return <Portfolio playSound={playSound} />;
-      case 'browser': return <Browser playSound={playSound} />;
-      case 'music': return <MediaPlayer osVolume={osVolume} playSound={playSound} />;
-      case 'pizzatron': return <Pizzatron />;
-      case 'personalization': return <Personalization
-        currentWallpaper={wallpaper}
-        setWallpaper={updateWallpaper}
-        currentColor={windowColor}
-        setWindowColor={updateWindowColor}
-        transparency={transparency}
-        setTransparency={updateTransparency}
-        currentSoundScheme={soundScheme}
-        setSoundScheme={updateSoundScheme}
-      />;
-      case 'minesweeper': return <Minesweeper />;
-      case 'photos': return <Photos />;
-      case 'virus': return <Virus onTrigger={triggerPrank} />;
-      default: return <div style={{ padding: 20 }}>This feature is currently unavailable.</div>;
-    }
+    return (
+      <Suspense fallback={<div className="win7-loading-fallback"><div className="login-spinner"></div></div>}>
+        {(() => {
+          switch (appId) {
+            case 'notepad': return <Notepad />;
+            case 'calculator': return <Calculator playSound={playSound} />;
+            case 'portfolio': return <Portfolio playSound={playSound} />;
+            case 'browser': return <Browser playSound={playSound} />;
+            case 'music': return <MediaPlayer osVolume={osVolume} playSound={playSound} />;
+            case 'pizzatron': return <Pizzatron />;
+            case 'personalization': return <Personalization
+              currentWallpaper={wallpaper}
+              setWallpaper={updateWallpaper}
+              currentColor={windowColor}
+              setWindowColor={updateWindowColor}
+              transparency={transparency}
+              setTransparency={updateTransparency}
+              currentSoundScheme={soundScheme}
+              setSoundScheme={updateSoundScheme}
+            />;
+            case 'minesweeper': return <Minesweeper />;
+            case 'photos': return <Photos />;
+            case 'virus': return <Virus onTrigger={triggerPrank} />;
+            default: return <div style={{ padding: 20 }}>Not Available</div>;
+          }
+        })()}
+      </Suspense>
+    );
   };
 
   return (
@@ -470,32 +476,32 @@ function App() {
             ))}
 
             {errorWindows.map(err => (
-              <div 
-                key={err.id} 
+              <div
+                key={err.id}
                 className="win7-error-dialog win7-glass"
-                style={{ 
-                    position: 'absolute', 
-                    left: err.x, 
-                    top: err.y, 
-                    zIndex: 9999,
-                    width: 350
+                style={{
+                  position: 'absolute',
+                  left: err.x,
+                  top: err.y,
+                  zIndex: 9999,
+                  width: 350
                 }}
               >
                 <div className="error-header">
-                    <span className="error-title">System Error</span>
-                    <button className="error-close" onClick={() => closeError(err.id)}>✕</button>
+                  <span className="error-title">System Error</span>
+                  <button className="error-close" onClick={() => closeError(err.id)}>✕</button>
                 </div>
                 <div className="error-body">
-                    <div className="error-icon-red">X</div>
-                    <div className="error-message">
-                        A critical system error occurred. Memory at segment 0x004F2A could not be read.
-                        <br/><br/>
-                        The system will now attempt to fix the error.
-                    </div>
+                  <div className="error-icon-red">X</div>
+                  <div className="error-message">
+                    A critical system error occurred. Memory at segment 0x004F2A could not be read.
+                    <br /><br />
+                    The system will now attempt to fix the error.
+                  </div>
                 </div>
                 <div className="error-footer">
-                    <button className="win7-btn-std" onClick={() => closeError(err.id)}>OK</button>
-                    <button className="win7-btn-std" onClick={() => closeError(err.id)}>Details</button>
+                  <button className="win7-btn-std" onClick={() => closeError(err.id)}>OK</button>
+                  <button className="win7-btn-std" onClick={() => closeError(err.id)}>Details</button>
                 </div>
               </div>
             ))}

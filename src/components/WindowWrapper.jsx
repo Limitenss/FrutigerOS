@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-function WindowWrapper({ 
-    appId, 
-    zIndex, 
-    children, 
-    onFocus, 
-    onMaximize, 
-    onClose, 
+function WindowWrapper({
+    appId,
+    zIndex,
+    children,
+    onFocus,
+    onMaximize,
+    onClose,
     onMinimize,
-    onShake, 
-    isMaximized, 
-    isMinimized, 
+    onShake,
+    isMaximized,
+    isMinimized,
     isActive,
-    config 
+    config
 }) {
     const [pos, setPos] = useState({ x: 100 + (zIndex * 5), y: 50 + (zIndex * 5) });
     const [size, setSize] = useState({ w: 800, h: 550 });
@@ -20,7 +20,7 @@ function WindowWrapper({
     const isResizing = useRef(false);
     const dragOffset = useRef({ x: 0, y: 0 });
     const windowRef = useRef(null);
-    
+
     // Shake detection refs
     const lastX = useRef(0);
     const lastDir = useRef(0); // 1 = right, -1 = left
@@ -42,7 +42,7 @@ function WindowWrapper({
     const handleMouseDown = (e) => {
         onFocus(appId);
         if (e.target.closest('.window-controls')) return;
-        
+
         // If maximized, restore first then drag from center
         if (isMaximized) {
             onMaximize(appId);
@@ -68,7 +68,7 @@ function WindowWrapper({
             // Shake detection logic
             const deltaX = nextX - lastX.current;
             const currentDir = deltaX > 0 ? 1 : deltaX < 0 ? -1 : 0;
-            
+
             if (currentDir !== 0 && currentDir !== lastDir.current) {
                 const now = Date.now();
                 if (now - lastShakeTime.current < 500) {
@@ -89,7 +89,7 @@ function WindowWrapper({
         const onMouseUp = (e) => {
             isDragging.current = false;
             dirChanges.current = 0;
-            
+
             // Aero Snap detection
             if (e.clientY < 5) {
                 onMaximize(appId);
@@ -115,7 +115,7 @@ function WindowWrapper({
         e.preventDefault();
         e.stopPropagation();
         isResizing.current = true;
-        
+
         const startSize = { ...size };
         const startPos = { x: e.clientX, y: e.clientY };
 
@@ -141,10 +141,10 @@ function WindowWrapper({
     if (isMinimized) return null;
 
     return (
-        <div 
+        <div
             ref={windowRef}
             className={`os-window win7-glass ${isActive ? 'active' : ''} ${isMaximized ? 'maximized' : ''} ${isMinimized ? 'minimized' : ''} ${appId}`}
-            style={{ 
+            style={{
                 zIndex,
                 left: isMaximized ? 0 : pos.x,
                 top: isMaximized ? 0 : pos.y,

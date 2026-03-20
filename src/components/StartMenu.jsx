@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import './StartMenu.css';
 
 function StartMenu({ APP_CONFIG, launchApp, playSound, handleShutdown }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const apps = Object.entries(APP_CONFIG).filter(([id]) => !['documents', 'pictures', 'music', 'computer', 'settings', 'help'].includes(id));
-    const filteredApps = apps.filter(([id, config]) => 
+    const filteredApps = apps.filter(([id, config]) =>
         config.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -14,7 +15,7 @@ function StartMenu({ APP_CONFIG, launchApp, playSound, handleShutdown }) {
             <div className="start-menu-main">
                 <div className="start-menu-left">
                     <div className="start-menu-items">
-                            {!searchTerm ? (
+                        {!searchTerm ? (
                             <>
                                 <div style={{ fontSize: 11, color: '#666', padding: '5px 15px' }}>Recently Used</div>
                                 {apps.slice(0, 6).map(([id, config]) => (
@@ -71,9 +72,9 @@ function StartMenu({ APP_CONFIG, launchApp, playSound, handleShutdown }) {
             <div className="start-menu-footer">
                 <div className="start-search">
                     <span className="start-search-icon">🔍</span>
-                    <input 
-                        type="text" 
-                        placeholder="Search programs and files" 
+                    <input
+                        type="text"
+                        placeholder="Search programs and files"
                         id="start-search-input"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}

@@ -1,0 +1,63 @@
+/* Start Menu */
+#start-menu {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 440px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    z-index: 1500;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    backdrop-filter: blur(25px) saturate(150%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+.start-menu-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.start-menu-left {
+    width: 60%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.start-menu-right {
+    width: 40%;
+    background: linear-gradient(to right, rgba(15, 30, 55, 0.7) 0%, rgba(10, 20, 40, 0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 5px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.start-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: url('/assets/cursors/link.cur'), pointer;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+
+.start-menu-item:hover {
+    background: linear-gradient(to bottom, #f2f9fe, #d6f0fd);
+    border: 1px solid #7dc1ed;
+}
+
+.start-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    object-fit: contain;
+}

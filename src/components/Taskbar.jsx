@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import VolumeControl from './VolumeControl';
 import ClockFlyout from './ClockFlyout';
 import InternetFlyout from './InternetFlyout';
+import './Taskbar.css';
 
-function Taskbar({ 
-    pinnedApps, 
-    openWindows, 
-    activeApp, 
-    launchApp, 
-    focusWindow, 
-    isStartMenuOpen, 
+function Taskbar({
+    pinnedApps,
+    openWindows,
+    activeApp,
+    launchApp,
+    focusWindow,
+    isStartMenuOpen,
     toggleStartMenu,
     APP_CONFIG,
     playSound,
@@ -28,21 +29,21 @@ function Taskbar({
     return (
         <div id="taskbar" className="win7-glass">
             <div className="taskbar-left">
-                <div 
-                    id="start-button" 
-                    className={`start-orb ${isStartMenuOpen ? 'active' : ''}`} 
+                <div
+                    id="start-button"
+                    className={`start-orb ${isStartMenuOpen ? 'active' : ''}`}
                     onClick={toggleStartMenu}
                 ></div>
-                
+
                 {allToRender.map(appId => {
                     const config = APP_CONFIG[appId];
                     if (!config) return null;
-                    
+
                     const isOpen = !!openWindows[appId];
                     const isActive = activeApp === appId;
 
                     return (
-                        <div 
+                        <div
                             key={appId}
                             className={`taskbar-item ${isOpen ? 'open' : ''} ${isActive ? 'active' : ''}`}
                             onClick={() => {
@@ -60,7 +61,7 @@ function Taskbar({
                         >
                             <img src={config.icon} alt={config.name} style={{ width: 24, height: 24 }} />
                             {isOpen && <div className="taskbar-item-indicator"></div>}
-                            
+
                             {hoveredApp === appId && (
                                 <div className="aero-thumbnail win7-glass">
                                     <div className="thumbnail-header">
@@ -78,15 +79,15 @@ function Taskbar({
                     );
                 })}
             </div>
-            
+
             <div className="taskbar-right">
-                <VolumeControl 
-                    osVolume={osVolume} 
-                    setOsVolume={setOsVolume} 
-                    playSound={playSound} 
+                <VolumeControl
+                    osVolume={osVolume}
+                    setOsVolume={setOsVolume}
+                    playSound={playSound}
                 />
-                <span 
-                    className={`tray-icon ${isInternetOpen ? 'active' : ''}`} 
+                <span
+                    className={`tray-icon ${isInternetOpen ? 'active' : ''}`}
                     style={{ fontSize: 14, cursor: 'pointer' }}
                     onClick={(e) => {
                         e.stopPropagation();
@@ -96,7 +97,7 @@ function Taskbar({
                 >
                     🌐
                 </span>
-                
+
                 <div onClick={(e) => {
                     e.stopPropagation();
                     setIsClockOpen(!isClockOpen);
@@ -107,10 +108,10 @@ function Taskbar({
 
                 {isClockOpen && <ClockFlyout onClose={() => setIsClockOpen(false)} />}
                 {isInternetOpen && <InternetFlyout onClose={() => setIsInternetOpen(false)} />}
-                
-                <div 
-                    id="show-desktop-btn" 
-                    title="Show Desktop" 
+
+                <div
+                    id="show-desktop-btn"
+                    title="Show Desktop"
                     onClick={minimizeAll}
                     onMouseEnter={() => setIsPeeking(true)}
                     onMouseLeave={() => setIsPeeking(false)}
@@ -134,8 +135,8 @@ function Clock() {
     const dateStr = `${time.getMonth() + 1}/${time.getDate()}/${time.getFullYear()}`;
 
     return (
-        <div 
-            className="taskbar-clock" 
+        <div
+            className="taskbar-clock"
             title={time.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         >
             <span id="clock-time">{`${hours}:${minutes} ${ampm}`}</span>
@@ -144,4 +145,4 @@ function Clock() {
     );
 }
 
-export default Taskbar;
+export default React.memo(Taskbar);

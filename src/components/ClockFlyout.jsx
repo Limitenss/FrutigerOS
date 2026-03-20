@@ -1,3 +1,5 @@
+import "./Clock.jsx";
+
 import React, { useState, useEffect } from 'react';
 
 const ClockFlyout = ({ onClose }) => {
@@ -10,7 +12,7 @@ const ClockFlyout = ({ onClose }) => {
 
   const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
-  
+
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const daysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
@@ -54,7 +56,7 @@ const ClockFlyout = ({ onClose }) => {
           {time.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
       </div>
-      
+
       <div className="calendar-section">
         <div className="calendar-header">
           {monthNames[month]} {year}
@@ -64,7 +66,7 @@ const ClockFlyout = ({ onClose }) => {
           {days}
         </div>
       </div>
-      
+
       <div className="flyout-footer">
         <span className="footer-link">Change date and time settings...</span>
       </div>
