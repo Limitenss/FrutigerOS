@@ -3,15 +3,15 @@ import './index.css';
 
 const SOUNDS = {
   'windows-default': {
-    click: '/assets/sounds/click.wav',
-    startup: '/assets/sounds/startup.wav',
-    logon: '/assets/sounds/logon.wav',
-    shutdown: '/assets/sounds/shutdown.wav',
-    error: '/assets/sounds/error.wav',
-    open: '/assets/sounds/open.wav',
-    close: '/assets/sounds/close.wav',
-    bubble: '/assets/sounds/bubble.wav',
-    glass: '/assets/sounds/glass.wav'
+    click: '/assets/sounds/Windows_Navigation_Start.wav',
+    startup: '/assets/sounds/Windows_Startup.wav',
+    logon: '/assets/sounds/Windows_Logon.wav',
+    shutdown: '/assets/sounds/Windows_Shutdown.wav',
+    error: '/assets/sounds/Windows_Error.wav',
+    open: '/assets/sounds/Windows_Minimize.wav',
+    close: '/assets/sounds/Windows_Restore.wav',
+    bubble: '/assets/sounds/Windows_Feed_Discovered.wav',
+    glass: '/assets/sounds/Windows_Ding.wav'
   },
   'nature': {
     click: '/assets/sounds/nature-click.wav',
